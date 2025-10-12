@@ -23,9 +23,10 @@ class _ImageFieldState extends State<ImageField> {
           isLoading = true;
           setState(() {});
           try {
-            await picker_image();
+            await pickerImage();
           } on Exception catch (e) {
             // TODO
+            // print(e);
           }
           isLoading = false;
           setState(() {});
@@ -59,7 +60,7 @@ class _ImageFieldState extends State<ImageField> {
     );
   }
 
-  Future<void> picker_image() async {
+  Future<void> pickerImage() async {
     final ImagePicker picker = ImagePicker();
 
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
