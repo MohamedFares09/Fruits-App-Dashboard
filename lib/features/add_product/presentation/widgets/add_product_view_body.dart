@@ -73,7 +73,9 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
               SizedBox(height: 16),
               ImageField(
                 onFileChanged: (value) {
-                  image = value!;
+                  setState(() {
+                    image = value;
+                  });
                 },
               ),
               SizedBox(height: 24),
@@ -88,7 +90,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         price: price,
                         code: code,
                         description: description,
-                        image: image!,
+                        image: image ?? File(''),
                         isFeatured: isFeatured,
                       );
                     } else {
