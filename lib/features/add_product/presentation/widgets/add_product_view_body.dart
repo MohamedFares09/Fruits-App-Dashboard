@@ -49,9 +49,9 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
               SizedBox(height: 16),
               CustomTextFormField(
                 hintText: 'product code',
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.text,
                 onSaved: (value) {
-                  code = value!;
+                  code = value!.toLowerCase();
                 },
               ),
               // Save product code,
@@ -85,23 +85,16 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   if (image != null) {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-                      AddProductEntity product = AddProductEntity(
-                        name: name,
-                        price: price,
-                        code: code,
-                        description: description,
-                        image: image ?? File(''),
-                        isFeatured: isFeatured,
-                      );
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
                     }
                   } else {
-                    showError(context);
+                    showErrorBar(context, 'Please select an image');
                   }
                 },
               ),
+              SizedBox(height: 24),
             ],
           ),
         ),
@@ -109,21 +102,9 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
     );
   }
 
-  dynamic showError(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Error'),
-        content: Text('Please select an image'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
+  dynamic showErrorBar(BuildContext context, String message) {
+    return ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 }
