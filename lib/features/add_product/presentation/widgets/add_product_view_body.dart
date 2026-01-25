@@ -85,6 +85,14 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                   if (image != null) {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
+                      AddProductEntity input = AddProductEntity(
+                        name: name,
+                        code: code,
+                        description: description,
+                        price: price,
+                        image: image!,
+                        isFeatured: isFeatured,
+                      );
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
