@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_app_dashboard/core/utils/widgets/custom_button.dart';
 import 'package:fruit_app_dashboard/core/utils/widgets/custom_text_form_field.dart';
 import 'package:fruit_app_dashboard/features/add_product/doman/entities/add_product_entity.dart';
+import 'package:fruit_app_dashboard/features/add_product/presentation/manager/add_product/add_product_cubit.dart';
 import 'package:fruit_app_dashboard/features/add_product/presentation/widgets/image_filed.dart';
 import 'package:fruit_app_dashboard/features/add_product/presentation/widgets/IsFeaturedBox.dart';
 
@@ -93,6 +95,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         image: image!,
                         isFeatured: isFeatured,
                       );
+                      context.read<AddProductCubit>().addProduct(input);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
