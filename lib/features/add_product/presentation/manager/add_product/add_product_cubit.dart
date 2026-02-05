@@ -1,9 +1,8 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_app_dashboard/core/repos/images_repo/image_repo.dart';
 import 'package:fruit_app_dashboard/core/repos/product_repo/product_repo.dart';
 import 'package:fruit_app_dashboard/features/add_product/doman/entities/add_product_entity.dart';
-import 'package:meta/meta.dart';
-
 part 'add_product_state.dart';
 
 class AddProductCubit extends Cubit<AddProductState> {
