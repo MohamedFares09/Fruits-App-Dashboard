@@ -10,6 +10,7 @@ import 'package:fruit_app_dashboard/features/add_product/doman/entities/add_prod
 import 'package:fruit_app_dashboard/features/add_product/presentation/manager/add_product/add_product_cubit.dart';
 import 'package:fruit_app_dashboard/features/add_product/presentation/widgets/image_filed.dart';
 import 'package:fruit_app_dashboard/features/add_product/presentation/widgets/IsFeaturedBox.dart';
+import 'package:fruit_app_dashboard/features/add_product/presentation/widgets/is_organic_check_box.dart';
 
 class AddProductViewBody extends StatefulWidget {
   const AddProductViewBody({super.key});
@@ -20,9 +21,10 @@ class AddProductViewBody extends StatefulWidget {
 
 class _AddProductViewBodyState extends State<AddProductViewBody> {
   late String name, description, code;
-  late double price;
+  late num price, unitAmout, numberOfCalories, expirationMonth;
   File? image;
   bool isFeatured = false;
+  bool isOrganic = false;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
@@ -32,19 +34,11 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
     return BlocConsumer<AddProductCubit, AddProductState>(
       listener: (context, state) {
         if (state is AddProductSuccess) {
-          buildsnakbar(
-            context,
-            'Product added successfully',
-            Colors.green,
-          );
+          buildsnakbar(context, 'Product added successfully', Colors.green);
         }
 
         if (state is AddProductFailure) {
-          buildsnakbar(
-            context,
-            state.errorMessage,
-            Colors.red,
-          );
+          buildsnakbar(context, state.errorMessage, Colors.red);
         }
       },
       builder: (context, state) {
@@ -91,6 +85,33 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     const SizedBox(height: 16),
 
                     CustomTextFormField(
+                      hintText: 'Product Number Of Calories',
+                      keyboardType: TextInputType.number,
+                      onSaved: (value) {
+                        numberOfCalories = int.parse(value!);
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    CustomTextFormField(
+                      hintText: 'Product Unit Amount',
+                      keyboardType: TextInputType.number,
+                      onSaved: (value) {
+                        unitAmout = int.parse(value!);
+                      },
+                    ),
+
+                    const SizedBox(height: 16),
+                    CustomTextFormField(
+                      hintText: 'Product Expiration Month',
+                      keyboardType: TextInputType.number,
+                      onSaved: (value) {
+                        expirationMonth = int.parse(value!);
+                      },
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    CustomTextFormField(
                       hintText: 'Product Description',
                       maxLines: 5,
                       keyboardType: TextInputType.multiline,
@@ -98,9 +119,12 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         description = value!;
                       },
                     ),
-
-                    const SizedBox(height: 16),
-
+                    const SizedBox(height: 8),
+                    IsOrganicCheckBox(
+                      onChanged: (value) {
+                        isOrganic = value;
+                      },
+                    ),
                     IsFeaturedCheckbox(
                       onChanged: (value) {
                         isFeatured = value;
@@ -133,20 +157,19 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                               price: price,
                               image: image!,
                               isFeatured: isFeatured,
+                              unitAmout: unitAmout.toInt(),
+                              isOrganic: isOrganic,
+                              expirationMonth: expirationMonth.toInt(),
+                              numberOfCalories: numberOfCalories.toInt(),
                             );
 
-                            context
-                                .read<AddProductCubit>()
-                                .addProduct(input);
+                            context.read<AddProductCubit>().addProduct(input);
                           } else {
                             autovalidateMode = AutovalidateMode.always;
                             setState(() {});
                           }
                         } else {
-                          _showErrorBar(
-                            context,
-                            'Please select an image',
-                          );
+                          _showErrorBar(context, 'Please select an image');
                         }
                       },
                     ),
@@ -163,8 +186,8 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
   }
 
   void _showErrorBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 }
