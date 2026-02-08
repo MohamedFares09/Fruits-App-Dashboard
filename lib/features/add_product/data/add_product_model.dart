@@ -9,7 +9,7 @@ class AddProductModel {
   final num price;
   final File image;
   final bool isFeatured;
-  String ? urlImage; 
+  String? urlImage;
   AddProductModel({
     required this.name,
     required this.code,
@@ -17,9 +17,9 @@ class AddProductModel {
     required this.price,
     required this.image,
     required this.isFeatured,
-     this.urlImage,
+    this.urlImage,
   });
-  factory AddProductModel.fromEntity(AddProductEntity entity){
+  factory AddProductModel.fromEntity(AddProductEntity entity) {
     return AddProductModel(
       name: entity.name,
       code: entity.code,
@@ -30,13 +30,12 @@ class AddProductModel {
       urlImage: entity.urlImage,
     );
   }
-  toJson(){
+  toJson() {
     return {
       'name': name,
       'code': code,
       'description': description,
       'price': price,
-      'image': image,
       'isFeatured': isFeatured,
       'urlImage': urlImage,
     };
