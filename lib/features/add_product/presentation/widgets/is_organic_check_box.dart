@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:fruit_app_dashboard/core/utils/app_colors.dart';
 import 'package:fruit_app_dashboard/core/utils/app_text_styles.dart';
 
-class IsFeaturedCheckbox extends StatefulWidget {
-  const IsFeaturedCheckbox({super.key, required this.onChanged});
+class IsOrganicCheckBox extends StatefulWidget {
+  const IsOrganicCheckBox({super.key, required this.onChanged});
   final ValueChanged<bool> onChanged;
   @override
-  State<IsFeaturedCheckbox> createState() => _IsFeaturedCheckboxState();
+  State<IsOrganicCheckBox> createState() => _IsOrganicCheckBoxState();
 }
 
-class _IsFeaturedCheckboxState extends State<IsFeaturedCheckbox> {
+class _IsOrganicCheckBoxState extends State<IsOrganicCheckBox> {
   bool isChecked = false;
 
   @override
@@ -23,7 +23,7 @@ class _IsFeaturedCheckboxState extends State<IsFeaturedCheckbox> {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: 'Is Featured Item',
+                    text: 'Is Organic Item',
                     style: AppTextStyles.semibold13.copyWith(
                       color: Colors.black,
                     ),
