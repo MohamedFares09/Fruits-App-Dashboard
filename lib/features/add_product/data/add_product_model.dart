@@ -11,7 +11,7 @@ class AddProductModel {
   final bool isFeatured;
   String? urlImage;
   final int expirationMonth;
-  final bool isOrganic = false;
+  final bool isOrganic ;
   final int numberOfCalories;
   final int unitAmout;
   final int avgRating = 0;
@@ -26,6 +26,7 @@ class AddProductModel {
     required this.expirationMonth,
     required this.numberOfCalories,
     required this.unitAmout,
+     this.isOrganic= false,
     this.urlImage,
   });
   factory AddProductModel.fromEntity(AddProductEntity entity) {
@@ -40,6 +41,7 @@ class AddProductModel {
       expirationMonth: entity.expirationMonth,
       numberOfCalories: entity.numberOfCalories,
       unitAmout: entity.unitAmout,
+      isOrganic: entity.isOrganic,
     );
   }
   toJson() {

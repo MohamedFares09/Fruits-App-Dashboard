@@ -9,7 +9,7 @@ class AddProductEntity {
   final bool isFeatured;
   String? urlImage;
   final int expirationMonth;
-  final bool isOrganic = false;
+  final bool isOrganic;
   final int numberOfCalories;
   final int unitAmout;
   final int avgRating = 0;
@@ -21,6 +21,7 @@ class AddProductEntity {
     required this.price,
     required this.image,
     required this.isFeatured,
+    this.isOrganic = false,
     this.urlImage,
     required this.expirationMonth,
     required this.numberOfCalories,
