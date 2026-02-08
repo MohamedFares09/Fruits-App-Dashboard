@@ -10,6 +10,12 @@ class AddProductModel {
   final File image;
   final bool isFeatured;
   String? urlImage;
+  final int expirationMonth;
+  final bool isOrganic = false;
+  final int numberOfCalories;
+  final int unitAmout;
+  final int avgRating = 0;
+  final int ratingCount = 0;
   AddProductModel({
     required this.name,
     required this.code,
@@ -17,6 +23,9 @@ class AddProductModel {
     required this.price,
     required this.image,
     required this.isFeatured,
+    required this.expirationMonth,
+    required this.numberOfCalories,
+    required this.unitAmout,
     this.urlImage,
   });
   factory AddProductModel.fromEntity(AddProductEntity entity) {
@@ -28,6 +37,9 @@ class AddProductModel {
       image: entity.image,
       isFeatured: entity.isFeatured,
       urlImage: entity.urlImage,
+      expirationMonth: entity.expirationMonth,
+      numberOfCalories: entity.numberOfCalories,
+      unitAmout: entity.unitAmout,
     );
   }
   toJson() {
@@ -38,6 +50,11 @@ class AddProductModel {
       'price': price,
       'isFeatured': isFeatured,
       'urlImage': urlImage,
+      'expirationMonth': expirationMonth,
+      'numberOfCalories': numberOfCalories,
+      'unitAmout': unitAmout,
+      'isOrganic': isOrganic,
+   
     };
   }
 }
