@@ -7,6 +7,7 @@ import 'package:fruit_app_dashboard/core/utils/widgets/custom_button.dart';
 import 'package:fruit_app_dashboard/core/utils/widgets/custom_progress_hud.dart';
 import 'package:fruit_app_dashboard/core/utils/widgets/custom_text_form_field.dart';
 import 'package:fruit_app_dashboard/features/add_product/doman/entities/add_product_entity.dart';
+import 'package:fruit_app_dashboard/features/add_product/doman/entities/review_entity.dart';
 import 'package:fruit_app_dashboard/features/add_product/presentation/manager/add_product/add_product_cubit.dart';
 import 'package:fruit_app_dashboard/features/add_product/presentation/widgets/image_filed.dart';
 import 'package:fruit_app_dashboard/features/add_product/presentation/widgets/IsFeaturedBox.dart';
@@ -151,6 +152,16 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                             formKey.currentState!.save();
 
                             final input = AddProductEntity(
+                              reviews: [
+                                ReviewEntity(
+                                  name: "Moahmed",
+                                  date: DateTime.now().toString(),
+                                  image:
+                                      'https://www.google.com/imgres?q=watermelon&imgurl=https%3A%2F%2Fcdn.britannica.com%2F99%2F143599-050-C3289491%2FWatermelon.jpg&imgrefurl=https%3A%2F%2Fwww.britannica.com%2Fplant%2Fwatermelon&docid=7rWhPlZwPtAmKM&tbnid=Bw4CZ9OZn69IXM&vet=12ahUKEwikq9_J3MqSAxVJ9LsIHddoNuEQnPAOegQIHBAB..i&w=620&h=600&hcb=2&ved=2ahUKEwikq9_J3MqSAxVJ9LsIHddoNuEQnPAOegQIHBAB',
+                                  rating: 0,
+                                  reviewDescription: "No reviews yet",
+                                ),
+                              ],
                               name: name,
                               code: code,
                               description: description,
