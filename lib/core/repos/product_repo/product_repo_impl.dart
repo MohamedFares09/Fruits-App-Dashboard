@@ -3,7 +3,7 @@ import 'package:fruit_app_dashboard/core/errors/failuer.dart';
 import 'package:fruit_app_dashboard/core/repos/product_repo/product_repo.dart';
 import 'package:fruit_app_dashboard/core/services/database_services.dart';
 import 'package:fruit_app_dashboard/core/utils/back_end.dart';
-import 'package:fruit_app_dashboard/features/add_product/data/add_product_model.dart';
+import 'package:fruit_app_dashboard/features/add_product/data/models/add_product_model.dart';
 import 'package:fruit_app_dashboard/features/add_product/doman/entities/add_product_entity.dart';
 
 class ProductRepoImpl implements ProductRepo {
