@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_app_dashboard/features/add_product/presentation/views/add_product_view.dart';
 import 'package:fruit_app_dashboard/features/dashboard/presentation/views/dashboard_view.dart';
+import 'package:fruit_app_dashboard/features/orders/presentation/order_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings setting) {
   switch (setting.name) {
@@ -8,6 +9,8 @@ Route<dynamic> onGenerateRoute(RouteSettings setting) {
       return MaterialPageRoute(builder: (context) => const DashboardView());
     case AddProductView.routeName:
       return MaterialPageRoute(builder: (context) => const AddProductView());
+    case OrderView.route:
+      return MaterialPageRoute(builder: (context) => const OrderView());
     default:
       return MaterialPageRoute(
         builder: (context) => Scaffold(

@@ -175,6 +175,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                             );
 
                             context.read<AddProductCubit>().addProduct(input);
+                            Navigator.pop(context);
                           } else {
                             autovalidateMode = AutovalidateMode.always;
                             setState(() {});

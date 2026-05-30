@@ -11,6 +11,7 @@ class AddProductModel {
   final File image;
   final bool isFeatured;
   String? urlImage;
+  final num sellingCount;
   final int expirationMonth;
   final bool isOrganic;
   final int numberOfCalories;
@@ -31,6 +32,7 @@ class AddProductModel {
     this.isOrganic = false,
     this.urlImage,
     required this.reviews,
+    this.sellingCount = 0,
   });
   factory AddProductModel.fromEntity(AddProductEntity entity) {
     return AddProductModel(
@@ -61,6 +63,7 @@ class AddProductModel {
       'unitAmout': unitAmout,
       'isOrganic': isOrganic,
       'reviews': reviews.map((e) => e.toJson()).toList(),
+      'sellingCount': sellingCount,
     };
   }
 }

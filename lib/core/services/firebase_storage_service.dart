@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fruit_app_dashboard/core/services/database_services.dart';
 
 
-class FireStoreServices implements DataBaseServices {
+class FirebaseStorageServices implements DataBaseServices {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Future<void> addData(
       {required String path,
-      required Map<String, dynamic> data,
+    required Map<String, dynamic> data,
       String? documentId}) async {
     if (documentId != null) {
       await firestore.collection(path).doc(documentId).set(data);
@@ -28,5 +28,11 @@ class FireStoreServices implements DataBaseServices {
       {required String path, required String documentId}) async {
     var data = await firestore.collection(path).doc(documentId).get();
     return data.exists;
+  }
+
+  @override
+  Future<dynamic> getData({required String path}) async {
+    var snapshot = await firestore.collection(path).get();
+    return snapshot.docs.map((e) => e.data()).toList();
   }
 }

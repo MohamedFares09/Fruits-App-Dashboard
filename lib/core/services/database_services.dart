@@ -12,4 +12,5 @@ abstract class DataBaseServices {
     required String path,
     required String documentId,
   });
+  Future<dynamic> getData({required String path});
 }
