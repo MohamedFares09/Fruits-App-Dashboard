@@ -1,5 +1,5 @@
-import 'package:fruit_app_dashboard/core/repos/order_repo/order_repo.dart';
-import 'package:fruit_app_dashboard/core/repos/order_repo/order_repo_impl.dart';
+import 'package:fruit_app_dashboard/features/add_product/doman/repos/order_repo.dart';
+import 'package:fruit_app_dashboard/features/add_product/data/repos/order_repo_impl.dart';
 import 'package:fruit_app_dashboard/core/repos/images_repo/image_repo.dart';
 import 'package:fruit_app_dashboard/core/repos/images_repo/image_repo_impl.dart';
 import 'package:fruit_app_dashboard/core/repos/product_repo/product_repo.dart';

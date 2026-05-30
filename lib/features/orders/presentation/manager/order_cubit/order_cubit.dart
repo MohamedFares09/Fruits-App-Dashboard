@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_app_dashboard/core/repos/order_repo/order_repo.dart';
+import 'package:fruit_app_dashboard/features/add_product/doman/repos/order_repo.dart';
 import 'package:fruit_app_dashboard/features/orders/domain/entities/order_entity.dart';
 
 part 'order_state.dart';
