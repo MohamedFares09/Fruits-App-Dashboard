@@ -37,7 +37,7 @@ class OrderItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
-                  order.status,
+                  order.status.name,
                   style: AppTextStyles.semibold13.copyWith(
                     color: AppColors.primaryColor,
                   ),
@@ -65,13 +65,44 @@ class OrderItem extends StatelessWidget {
           const SizedBox(height: 8),
           ...order.orderProducts.map(
             (product) => Padding(
-              padding: const EdgeInsets.only(bottom: 6),
+              padding: const EdgeInsets.only(bottom: 10),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.network(
+                      product.imageUrl,
+                      width: 56,
+                      height: 56,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 56,
+                          height: 56,
+                          color: Colors.grey.shade200,
+                          child: const Icon(Icons.image_not_supported),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 12),
                   Expanded(
-                    child: Text(
-                      product.name,
-                      style: AppTextStyles.regular13,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.name,
+                          style: AppTextStyles.semibold13,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          product.code,
+                          style: AppTextStyles.regular13.copyWith(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Text(
