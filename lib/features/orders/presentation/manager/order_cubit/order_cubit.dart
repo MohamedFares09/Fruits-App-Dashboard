@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_app_dashboard/features/add_product/doman/repos/order_repo.dart';
@@ -9,12 +11,12 @@ class OrderCubit extends Cubit<OrderState> {
   OrderCubit(this.orderRepo) : super(OrderInitial());
 
   final OrderRepo orderRepo;
-
-  void getOrders() async {
+  StreamSubscription? streamSubscription;
+  void getOrders() {
     if (isClosed) return;
     emit(OrderLoading());
-    await for (var orders in orderRepo.getOrders()) {
-      orders.fold(
+    streamSubscription = orderRepo.getOrders().listen((result) {
+      result.fold(
         (f) {
           emit(OrderFailure(f.message));
         },
@@ -22,6 +24,12 @@ class OrderCubit extends Cubit<OrderState> {
           emit(OrderSuccess(orders));
         },
       );
-    }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    streamSubscription?.cancel();
+    return super.close();
   }
 }
