@@ -31,8 +31,38 @@ class FirebaseStorageServices implements DataBaseServices {
   }
 
   @override
-  Future<dynamic> getData({required String path}) async {
-    var snapshot = await firestore.collection(path).get();
-    return snapshot.docs.map((e) => e.data()).toList();
+  Future<dynamic> getData({required String path , String ? documentId , Map<String , dynamic> ? query}) async {
+    if (documentId != null) {
+      var doc = await firestore.collection(path).doc(documentId).get();
+      return doc.data();
+    } else {
+      Query<Map<String, dynamic>> data = firestore.collection(path);
+      if (query != null) {
+       if(query['orderBy'] != null){
+         data = data.orderBy(query['orderBy'] , descending: query['descending'] ?? false);
+       }
+       if(query['limit'] != null){
+         data = data.limit(query['limit']);
+       }
+      }
+      var result = await data.get();
+      return result.docs.map((doc) => doc.data()).toList();
+    }
+  }
+
+  @override
+  Stream<dynamic> getStreamData({required String path , Map<String , dynamic> ? query})async* {
+   Query<Map<String, dynamic>> data = firestore.collection(path);
+      if (query != null) {
+       if(query['orderBy'] != null){
+         data = data.orderBy(query['orderBy'] , descending: query['descending'] ?? false);
+       }
+       if(query['limit'] != null){
+         data = data.limit(query['limit']);
+       }
+      }
+    await for (var result in data.snapshots()) {
+      yield result.docs.map((doc) => doc.data()).toList();
+    }
   }
 }

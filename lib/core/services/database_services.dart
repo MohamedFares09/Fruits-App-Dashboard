@@ -12,5 +12,6 @@ abstract class DataBaseServices {
     required String path,
     required String documentId,
   });
-  Future<dynamic> getData({required String path});
+  Future<dynamic> getData({required String path , String ? documentId , Map<String , dynamic> ? query});
+  Stream<dynamic> getStreamData({required String path , Map<String , dynamic> ? query});
 }
