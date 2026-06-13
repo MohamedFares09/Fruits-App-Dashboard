@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:fruit_app_dashboard/core/enums/order_status.dart';
 import 'package:fruit_app_dashboard/core/errors/failuer.dart';
 import 'package:fruit_app_dashboard/features/orders/domain/entities/order_entity.dart';
 
 abstract class OrderRepo {
   Stream<Either<Failure, List<OrderEntity>>> getOrders();
+  Future<Either<Failure, void>> updateOrder({required OrderStatus orderStatus ,required String orderId });
 }

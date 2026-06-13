@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruit_app_dashboard/core/enums/order_enums.dart';
+import 'package:fruit_app_dashboard/core/enums/order_status.dart';
 import 'package:fruit_app_dashboard/core/utils/app_text_styles.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -34,7 +34,7 @@ class DummyOrderListView extends StatelessWidget {
                         style: AppTextStyles.bold16,
                       ),
                       Text(
-                        OrderEnums.pending.name,
+                        OrderStatus.pending.name,
                         style: AppTextStyles.semibold13,
                       ),
                     ],

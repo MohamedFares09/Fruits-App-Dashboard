@@ -1,4 +1,4 @@
-import 'package:fruit_app_dashboard/core/enums/order_enums.dart';
+import 'package:fruit_app_dashboard/core/enums/order_status.dart';
 import 'package:fruit_app_dashboard/features/orders/domain/entities/order_product_entity.dart';
 import 'package:fruit_app_dashboard/features/orders/domain/entities/shipping_address_entity.dart';
 
@@ -8,7 +8,7 @@ class OrderEntity {
   final ShippingAddressEntity shippingAddress;
   final List<OrderProductEntity> orderProducts;
   final String paymentMethod;
-  final OrderEnums status;
+  final OrderStatus status;
   final String? date;
 
   const OrderEntity({

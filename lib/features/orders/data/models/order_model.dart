@@ -1,4 +1,4 @@
-import 'package:fruit_app_dashboard/core/enums/order_enums.dart';
+import 'package:fruit_app_dashboard/core/enums/order_status.dart';
 import 'package:fruit_app_dashboard/features/orders/data/models/order_product_model.dart';
 import 'package:fruit_app_dashboard/features/orders/data/models/shipping_address_model.dart';
 import 'package:fruit_app_dashboard/features/orders/domain/entities/order_entity.dart';
@@ -56,10 +56,10 @@ class OrderModel {
     );
   }
 
-  OrderEnums _parseOrderStatus(String value) {
-    return OrderEnums.values.firstWhere(
+  OrderStatus _parseOrderStatus(String value) {
+    return OrderStatus.values.firstWhere(
       (status) => status.name == value,
-      orElse: () => OrderEnums.pending,
+      orElse: () => OrderStatus.pending,
     );
   }
 }
