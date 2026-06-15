@@ -18,7 +18,7 @@ class OrderActionButton extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               context.read<UpdataOrderCubit>().updataOrder(
-                orderId: orderEntity.uid,
+                orderId: orderEntity.orderId,
                 orderStatus: OrderStatus.accepted,
               );
             },
@@ -28,12 +28,28 @@ class OrderActionButton extends StatelessWidget {
         SizedBox(width: 12),
         Visibility(
           visible: orderEntity.status == OrderStatus.pending,
-          child: ElevatedButton(onPressed: () {}, child: Text("Reject")),
+          child: ElevatedButton(
+            onPressed: () {
+              context.read<UpdataOrderCubit>().updataOrder(
+                orderId: orderEntity.orderId,
+                orderStatus: OrderStatus.canceled,
+              );
+            },
+            child: Text("Reject"),
+          ),
         ),
         SizedBox(width: 12),
         Visibility(
           visible: orderEntity.status == OrderStatus.accepted,
-          child: ElevatedButton(onPressed: () {}, child: Text("Delivered")),
+          child: ElevatedButton(
+            onPressed: () {
+              context.read<UpdataOrderCubit>().updataOrder(
+                orderId: orderEntity.orderId,
+                orderStatus: OrderStatus.completed,
+              );
+            },
+            child: Text("Delivered"),
+          ),
         ),
       ],
     );

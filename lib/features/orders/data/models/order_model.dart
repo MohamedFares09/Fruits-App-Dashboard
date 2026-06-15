@@ -26,10 +26,9 @@ class OrderModel {
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
-
       totalPrice: (json['totalPrice'] ?? 0).toDouble(),
       uid: json['uid'] ?? '',
-      orderId: json['orderId'],
+      orderId: json['orderId'] ?? '',
       shippingAddress: ShippingAddressModel.fromJson(
         Map<String, dynamic>.from(json['shippingAddress'] ?? {}),
       ),

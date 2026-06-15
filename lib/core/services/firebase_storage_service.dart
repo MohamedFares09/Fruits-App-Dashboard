@@ -57,7 +57,9 @@ class FirebaseStorageServices implements DataBaseServices {
         }
       }
       var result = await data.get();
-      return result.docs.map((doc) => doc.data()).toList();
+      return result.docs
+          .map((doc) => {...doc.data(), 'orderId': doc.id})
+          .toList();
     }
   }
 
@@ -79,7 +81,9 @@ class FirebaseStorageServices implements DataBaseServices {
       }
     }
     await for (var result in data.snapshots()) {
-      yield result.docs.map((doc) => doc.data()).toList();
+      yield result.docs
+          .map((doc) => {...doc.data(), 'orderId': doc.id})
+          .toList();
     }
   }
 
@@ -90,6 +94,5 @@ class FirebaseStorageServices implements DataBaseServices {
     String? documentId,
   }) async {
     await firestore.collection(path).doc(documentId).update(data);
-    throw UnimplementedError();
   }
 }
