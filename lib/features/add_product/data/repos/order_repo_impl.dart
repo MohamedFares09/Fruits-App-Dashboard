@@ -23,7 +23,7 @@ class OrderRepoImpl implements OrderRepo {
         yield right(orders);
       }
     } catch (e) {
-      yield left(ServerFailure("Something went wrong"));
+      yield left(ServerFailure("Something went wrong $e"));
     }
   }
 

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ class OrderCubit extends Cubit<OrderState> {
     streamSubscription = orderRepo.getOrders().listen((result) {
       result.fold(
         (f) {
+          log('Error: ${f.message}');
           emit(OrderFailure(f.message));
         },
         (orders) {

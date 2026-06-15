@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruit_app_dashboard/core/utils/app_colors.dart';
 import 'package:fruit_app_dashboard/core/utils/app_text_styles.dart';
 import 'package:fruit_app_dashboard/features/orders/domain/entities/order_entity.dart';
+import 'package:fruit_app_dashboard/features/orders/widgets/actions_button.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem({super.key, required this.order});
@@ -30,8 +31,10 @@ class OrderItem extends StatelessWidget {
                 ),
               ),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.lightPrimaryColor.withValues(alpha: .12),
                   borderRadius: BorderRadius.circular(16),
@@ -58,10 +61,7 @@ class OrderItem extends StatelessWidget {
             style: AppTextStyles.regular13,
           ),
           const Divider(height: 24),
-          Text(
-            'Products',
-            style: AppTextStyles.bold13,
-          ),
+          Text('Products', style: AppTextStyles.bold13),
           const SizedBox(height: 8),
           ...order.orderProducts.map(
             (product) => Padding(
@@ -91,10 +91,7 @@ class OrderItem extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          product.name,
-                          style: AppTextStyles.semibold13,
-                        ),
+                        Text(product.name, style: AppTextStyles.semibold13),
                         const SizedBox(height: 4),
                         Text(
                           product.code,
@@ -117,16 +114,12 @@ class OrderItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                order.paymentMethod,
-                style: AppTextStyles.semibold13,
-              ),
-              Text(
-                '${order.totalPrice} EGP',
-                style: AppTextStyles.bold16,
-              ),
+              Text(order.paymentMethod, style: AppTextStyles.semibold13),
+              Text('${order.totalPrice} EGP', style: AppTextStyles.bold16),
             ],
           ),
+          SizedBox(height: 12),
+          OrderActionButton(orderEntity: order),
         ],
       ),
     );

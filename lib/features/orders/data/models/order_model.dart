@@ -11,6 +11,7 @@ class OrderModel {
   final String paymentMethod;
   final String status;
   final String? date;
+  final String orderId;
 
   const OrderModel({
     required this.totalPrice,
@@ -19,13 +20,16 @@ class OrderModel {
     required this.orderProducts,
     required this.paymentMethod,
     required this.status,
+    required this.orderId,
     this.date,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
+
       totalPrice: (json['totalPrice'] ?? 0).toDouble(),
       uid: json['uid'] ?? '',
+      orderId: json['orderId'],
       shippingAddress: ShippingAddressModel.fromJson(
         Map<String, dynamic>.from(json['shippingAddress'] ?? {}),
       ),
@@ -46,6 +50,7 @@ class OrderModel {
 
   OrderEntity toEntity() {
     return OrderEntity(
+      orderId: orderId,
       totalPrice: totalPrice,
       uid: uid,
       shippingAddress: shippingAddress.toEntity(),

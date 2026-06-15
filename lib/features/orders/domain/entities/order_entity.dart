@@ -10,6 +10,7 @@ class OrderEntity {
   final String paymentMethod;
   final OrderStatus status;
   final String? date;
+  final String orderId; 
 
   const OrderEntity({
     required this.totalPrice,
@@ -18,6 +19,8 @@ class OrderEntity {
     required this.orderProducts,
     required this.paymentMethod,
     required this.status,
+    required this.orderId,
     this.date,
+
   });
 }
